@@ -1,0 +1,248 @@
+/* Define CSS Variables for Alien-Inspired Colors */
+:root {
+    --primary-bg-color: #000000;  /* Black background for an alien vibe */
+    --text-color: #a4ff00;  /* Neon Green text for a glowing effect */
+    --header-color: #000000;  /* Neon Purple for header to make it stand out */
+    --product-bg-color: #1f1f1f;  /* Dark grey for product background */
+    --product-border-color: #00ffcc;  /* Neon Teal border for product */
+    --gradient-start: #000000;  /* Dark teal to represent outer space */
+    --neon-glow: #00ff99;  /* Neon green for glowing accents */
+}
+
+/* Style for the background video */
+#background-video {
+    position: fixed; /* Fix the video in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the screen without distortion */
+    z-index: -1; /* Places the video behind all other content */
+}
+
+/* Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--primary-bg-color);  /* Dark background to highlight neon colors */
+    color: var(--text-color);  /* Neon green text */
+    font-size: 18px;  /* Increase the base font size */
+    min-height: 100vh;  /* Ensure full viewport height */
+}
+
+/* Center the header */
+header {
+    text-align: center;
+    margin-bottom: 60px;  /* Increase space below header */
+    color: var(--header-color);  /* Neon purple for the header */
+    font-size: 30px;  /* Adjusted size for better responsiveness */
+    text-shadow: 0 0 5px var(--neon-glow), 0 0 10px var(--neon-glow); /* Reduced glowing effect */
+    max-width: 90%;  /* Limit max width for better fit */
+    padding: 0 20px;  /* Added some padding for spacing */
+}
+
+/* Add a flexbox container for centering the product section */
+.products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;  /* Increase gap between products */
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));  /* Cosmic gradient for space-like feel */
+    padding: 50px 0;  /* Increase padding around product section */
+    border-radius: 10px;
+    max-width: 1200px;  /* Limit max width for larger screens */
+    width: 100%;
+}
+
+/* Center each individual product */
+.product {
+    text-align: center;
+    max-width: 350px;  /* Increase the max-width of each product */
+    margin-bottom: 60px;  /* Increase margin below each product */
+    background-color: var(--product-bg-color);  /* Dark product background */
+    border: 1px solid var(--product-border-color);  /* Neon teal border for product */
+    border-radius: 15px;  /* Increase border-radius for rounder edges */
+    padding: 30px;  /* Add more padding inside each product */
+    box-shadow: none;  /* Removed box shadow behind products */
+}
+
+/* Ensure images inside the product don't stretch out */
+.product img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;  /* Increase max-height to make images bigger */
+    border-radius: 8px;
+}
+
+/* Hover effect for products */
+.product:hover {
+    box-shadow: none;  /* Removed hover box-shadow */
+    transform: scale(1.1);  /* Slight zoom effect for hover interaction */
+}
+
+/* Styling for the footer */
+footer {
+    text-align: center;
+    margin-top: 60px;  /* Increase space above footer */
+    color: var(--text-color);  /* Use neon green for footer text */
+    text-shadow: 0 0 15px var(--neon-glow); /* Glowing footer text */
+    font-size: 18px;  /* Make footer text larger */
+    width: 100%;
+    padding: 20px;
+}
+
+/* Increase size for the "Buy Now" PayPal button */
+form input[type="image"] {
+    width: 250px;  /* Increase width of the PayPal button */
+    height: auto;  /* Maintain aspect ratio */
+    border-radius: 15px;  /* Round the corners of the button */
+    box-shadow: 0 0 15px var(--neon-glow);  /* Glowing effect on PayPal button */
+}
+
+/* Make images in the "tshirt-images" section larger */
+.tshirt-images .image img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;  /* Increase max height for the T-shirt images */
+}
+
+/* Style for the "image" elements in the product section */
+.image p {
+    font-size: 20px;  /* Increase font size for the captions */
+    margin-top: 15px;  /* Space between image and caption */
+}
+
+/* Modal Styles */
+#image-modal {
+    display: none;  /* Hidden by default */
+    position: fixed;  /* Stay in place */
+    z-index: 1;  /* Sit on top of everything else */
+    left: 0;
+    top: 0;
+    width: 100%;  /* Full screen */
+    height: 100%;  /* Full screen */
+    overflow: auto;  /* Enable scrolling if needed */
+    background-color: rgba(0, 0, 0, 0.9);  /* Black with transparency */
+}
+
+/* Modal Image */
+#modal-image {
+    margin: 10% auto;
+    display: block;
+    width: 80%;  /* Limit image size */
+    max-width: 700px;  /* Max size of the image */
+}
+
+/* Close Button */
+#close-modal {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+}
+
+#close-modal:hover,
+#close-modal:focus {
+    color: #f1f1f1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Size Selection Styles */
+select {
+    font-size: 18px;  /* Increase font size for better readability */
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #222222;  /* Dark background to match the theme */
+    color: #a4ff00;  /* Neon green text */
+    border: 1px solid var(--product-border-color);  /* Neon teal border */
+    border-radius: 5px;  /* Rounded corners */
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--neon-glow);  /* Glowing border when focused */
+}
+
+/* Hover-to-Enlarge (Lens Effect) */
+.product img:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+/* 360-Degree Image Viewer Styling */
+.product .image-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product .image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Lightbox with Zoom & Description */
+#product-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#product-lightbox img {
+    max-width: 80%;
+    height: auto;
+}
+
+#product-lightbox .description {
+    color: #a4ff00;
+    font-size: 18px;
+    padding: 20px;
+    text-align: center;
+}
+
+#product-lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Image Magnifier (Lens Effect) */
+.magnify-container {
+    position: relative;
+}
+
+.magnify-lens {
+    position: absolute;
+    border: 3px solid #fff;
+    cursor: zoom-in;
+    visibility: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+.magnify-container:hover .magnify-lens {
+    visibility: visible;
+}
