@@ -35,6 +35,27 @@ body {
     min-height: 100vh;  /* Ensure full viewport height */
     box-sizing: border-box;  /* Ensure padding and margin don't affect overall layout */
 }
+/* ✨ Neon Glow Animation */
+@keyframes neonGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px var(--neon-glow), 0 0 10px var(--neon-glow);
+    }
+    50% {
+        text-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow);
+    }
+}
+
+/* Center the header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--header-color);
+    font-size: 36px;
+    text-shadow: 0 0 5px var(--neon-glow), 0 0 10px var(--neon-glow);
+    max-width: 90%;
+    padding: 0 20px;
+    animation: neonGlow 2s infinite alternate; /* <-- Add this here */
+}
 
 /* Center the header */
 header {
