@@ -31,19 +31,20 @@ body {
     justify-content: flex-start;
     background-color: var(--primary-bg-color);  /* Dark background to highlight neon colors */
     color: var(--text-color);  /* Neon green text */
-    font-size: 18px;  /* Increase the base font size */
+    font-size: 18px;  /* Base font size */
     min-height: 100vh;  /* Ensure full viewport height */
+    box-sizing: border-box;  /* Ensure padding and margin don't affect overall layout */
 }
 
 /* Center the header */
 header {
     text-align: center;
-    margin-bottom: 60px;  /* Increase space below header */
+    margin-bottom: 40px;  /* Adjusted space below header */
     color: var(--header-color);  /* Neon purple for the header */
-    font-size: 30px;  /* Adjusted size for better responsiveness */
-    text-shadow: 0 0 5px var(--neon-glow), 0 0 10px var(--neon-glow); /* Reduced glowing effect */
+    font-size: 36px;  /* Increased size for visibility */
+    text-shadow: 0 0 5px var(--neon-glow), 0 0 10px var(--neon-glow); /* Subtle glowing effect */
     max-width: 90%;  /* Limit max width for better fit */
-    padding: 0 20px;  /* Added some padding for spacing */
+    padding: 0 20px;  /* Added padding for spacing */
 }
 
 /* Add a flexbox container for centering the product section */
@@ -52,9 +53,9 @@ header {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 40px;  /* Increase gap between products */
+    gap: 30px;  /* Adjusted gap between products */
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));  /* Cosmic gradient for space-like feel */
-    padding: 50px 0;  /* Increase padding around product section */
+    padding: 50px 10%;  /* Adjusted padding for better spacing */
     border-radius: 10px;
     max-width: 1200px;  /* Limit max width for larger screens */
     width: 100%;
@@ -63,43 +64,43 @@ header {
 /* Center each individual product */
 .product {
     text-align: center;
-    max-width: 350px;  /* Increase the max-width of each product */
-    margin-bottom: 60px;  /* Increase margin below each product */
+    max-width: 330px;  /* Reduced max-width of each product */
+    margin-bottom: 40px;  /* Adjusted margin below each product */
     background-color: var(--product-bg-color);  /* Dark product background */
     border: 1px solid var(--product-border-color);  /* Neon teal border for product */
-    border-radius: 15px;  /* Increase border-radius for rounder edges */
-    padding: 30px;  /* Add more padding inside each product */
+    border-radius: 15px;  /* Rounded corners */
+    padding: 25px;  /* Adjusted padding inside each product */
     box-shadow: none;  /* Removed box shadow behind products */
+    transition: transform 0.3s ease;  /* Smooth transition for scaling */
 }
 
 /* Ensure images inside the product don't stretch out */
 .product img {
     width: 100%;
     height: auto;
-    max-height: 400px;  /* Increase max-height to make images bigger */
+    max-height: 350px;  /* Adjusted max-height to make images more consistent */
     border-radius: 8px;
 }
 
 /* Hover effect for products */
 .product:hover {
-    box-shadow: none;  /* Removed hover box-shadow */
-    transform: scale(1.1);  /* Slight zoom effect for hover interaction */
+    transform: scale(1.05);  /* Slight zoom effect for hover interaction */
 }
 
 /* Styling for the footer */
 footer {
     text-align: center;
-    margin-top: 60px;  /* Increase space above footer */
-    color: var(--text-color);  /* Use neon green for footer text */
+    margin-top: 40px;  /* Adjusted space above footer */
+    color: var(--text-color);  /* Neon green for footer text */
     text-shadow: 0 0 15px var(--neon-glow); /* Glowing footer text */
-    font-size: 18px;  /* Make footer text larger */
+    font-size: 20px;  /* Increased footer font size */
     width: 100%;
     padding: 20px;
 }
 
 /* Increase size for the "Buy Now" PayPal button */
 form input[type="image"] {
-    width: 250px;  /* Increase width of the PayPal button */
+    width: 220px;  /* Slightly reduced width of the PayPal button */
     height: auto;  /* Maintain aspect ratio */
     border-radius: 15px;  /* Round the corners of the button */
     box-shadow: 0 0 15px var(--neon-glow);  /* Glowing effect on PayPal button */
@@ -109,13 +110,13 @@ form input[type="image"] {
 .tshirt-images .image img {
     width: 100%;
     height: auto;
-    max-height: 350px;  /* Increase max height for the T-shirt images */
+    max-height: 300px;  /* Reduced max height for consistency */
 }
 
 /* Style for the "image" elements in the product section */
 .image p {
-    font-size: 20px;  /* Increase font size for the captions */
-    margin-top: 15px;  /* Space between image and caption */
+    font-size: 18px;  /* Adjusted font size for captions */
+    margin-top: 12px;  /* Space between image and caption */
 }
 
 /* Modal Styles */
@@ -175,7 +176,7 @@ select:focus {
 
 /* Hover-to-Enlarge (Lens Effect) */
 .product img:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
     cursor: zoom-in;
     transition: transform 0.3s ease;
 }
@@ -239,8 +240,8 @@ select:focus {
     border: 3px solid #fff;
     cursor: zoom-in;
     visibility: hidden;
-    width: 100px;
-    height: 100px;
+    width: 120px;  /* Adjusted size of magnifier lens */
+    height: 120px;  /* Adjusted size of magnifier lens */
 }
 
 .magnify-container:hover .magnify-lens {
