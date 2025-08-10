@@ -1,484 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="T-shirt store with unique designs">
-    <title>STOiZY SHIRTZ FOR MY FELLOW EARTHLINGZ</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STOiZY MERCH DROP NO.2</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Background video styling */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 0.2; /* Adjust for visibility */
+    }
 
-    <!-- Include Lightbox CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
-    <style>
-        /* Custom Styles for Lightbox */
-        .lb-data .lb-title {
-            color: #fff !important;
-        }
+    .product img {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      max-width: 100%;
+      height: auto;
+    }
 
-        .lb-data .lb-close {
-            color: #fff !important;
-        }
+    .product img:hover {
+      transform: scale(1.03);
+    }
 
-        /* Define CSS Variables for Alien-Inspired Colors */
-        :root {
-            --primary-bg-color: #000000;  /* Black background for an alien vibe */
-            --text-color: #a4ff00;  /* Neon Green text for a glowing effect */
-            --header-color: #000000;  /* Neon Purple for header to make it stand out */
-            --product-bg-color: #1f1f1f;  /* Dark grey for product background */
-            --product-border-color: #00ffcc;  /* Neon Teal border for product */
-            --gradient-start: #000000;  /* Dark teal to represent outer space */
-            --neon-glow: #00ff99;  /* Neon green for glowing accents */
-        }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 80px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
 
-        /* Style for the background video */
-        #background-video {
-            position: fixed; /* Fix the video in place */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the video covers the screen without distortion */
-            z-index: -1; /* Places the video behind all other content */
-        }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+    }
 
-        /* Body Styling */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: var(--primary-bg-color);  /* Dark background to highlight neon colors */
-            color: var(--text-color);  /* Neon green text */
-            font-size: 18px;  /* Increase the base font size */
-            min-height: 100vh;  /* Ensure full viewport height */
-        }
+    .modal-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        /* Center the header */
-        header {
-            text-align: center;
-            margin-bottom: 60px;  /* Increase space below header */
-            color: var(--header-color);  /* Neon purple for the header */
-            font-size: 22px;  /* Adjusted size for better responsiveness */
-            text-shadow: 0 0 5px var(--neon-glow), 0 0 10px var(--neon-glow); /* Reduced glowing effect */
-            max-width: 90%;  /* Limit max width for better fit */
-            padding: 0 50px;  /* Added some padding for spacing */
-        }
-
-        /* Add a flexbox container for centering the product section */
-        .products {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;  /* Increase gap between products */
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));  /* Cosmic gradient for space-like feel */
-            padding: 50px 0;  /* Increase padding around product section */
-            border-radius: 10px;
-            max-width: 1200px;  /* Limit max width for larger screens */
-            width: 100%;
-        }
-
-        /* Center each individual product */
-        .product {
-            text-align: center;
-            max-width: 350px;  /* Increase the max-width of each product */
-            margin-bottom: 60px;  /* Increase margin below each product */
-            background-color: var(--product-bg-color);  /* Dark product background */
-            border: 1px solid var(--product-border-color);  /* Neon teal border for product */
-            border-radius: 15px;  /* Increase border-radius for rounder edges */
-            padding: 30px;  /* Add more padding inside each product */
-            box-shadow: none;  /* Removed box shadow behind products */
-        }
-
-        /* Ensure images inside the product don't stretch out */
-        .product img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;  /* Increase max-height to make images bigger */
-            border-radius: 8px;
-        }
-
-        /* Hover effect for products */
-        .product:hover {
-            box-shadow: none;  /* Removed hover box-shadow */
-            transform: scale(1.1);  /* Slight zoom effect for hover interaction */
-        }
-
-        /* Styling for the footer */
-        footer {
-            text-align: center;
-            margin-top: 60px;  /* Increase space above footer */
-            color: var(--text-color);  /* Use neon green for footer text */
-            text-shadow: 0 0 15px var(--neon-glow); /* Glowing footer text */
-            font-size: 18px;  /* Make footer text larger */
-            width: 100%;
-            padding: 20px;
-        }
-
-        /* Increase size for the "Buy Now" PayPal button */
-        form input[type="image"] {
-            width: 250px;  /* Increase width of the PayPal button */
-            height: auto;  /* Maintain aspect ratio */
-            border-radius: 15px;  /* Round the corners of the button */
-            box-shadow: 0 0 15px var(--neon-glow);  /* Glowing effect on PayPal button */
-        }
-
-        /* Make images in the "tshirt-images" section larger */
-        .tshirt-images .image img {
-            width: 100%;
-            height: auto;
-            max-height: 350px;  /* Increase max height for the T-shirt images */
-        }
-
-        /* Style for the "image" elements in the product section */
-        .image p {
-            font-size: 20px;  /* Increase font size for the captions */
-            margin-top: 15px;  /* Space between image and caption */
-        }
-
-        /* Modal Styles */
-        #image-modal {
-            display: none;  /* Hidden by default */
-            position: fixed;  /* Stay in place */
-            z-index: 1;  /* Sit on top of everything else */
-            left: 0;
-            top: 0;
-            width: 100%;  /* Full screen */
-            height: 100%;  /* Full screen */
-            overflow: auto;  /* Enable scrolling if needed */
-            background-color: rgba(0, 0, 0, 0.9);  /* Black with transparency */
-        }
-
-        /* Modal Image */
-        #modal-image {
-            margin: 10% auto;
-            display: block;
-            width: 80%;  /* Limit image size */
-            max-width: 700px;  /* Max size of the image */
-        }
-
-        /* Close Button */
-        #close-modal {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #fff;
-        }
-
-        #close-modal:hover,
-        #close-modal:focus {
-            color: #f1f1f1;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Size Selection Styles */
-        select {
-            font-size: 18px;  /* Increase font size for better readability */
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #222222;  /* Dark background to match the theme */
-            color: #a4ff00;  /* Neon green text */
-            border: 1px solid var(--product-border-color);  /* Neon teal border */
-            border-radius: 5px;  /* Rounded corners */
-        }
-
-        select:focus {
-            outline: none;
-            border-color: var(--neon-glow);  /* Glowing border when focused */
-        }
-
-        /* Style for the form containing the size dropdown and PayPal button */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;  /* Centers all content within the form */
-    justify-content: center;
-    width: 100%;  /* Ensure the form takes full width */
-    margin: 0 auto;  /* Center the form horizontally */
-}
-
-/* Centering the size dropdown */
-select {
-    font-size: 18px;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #222222;
-    color: #a4ff00;
-    border: 1px solid var(--product-border-color);
-    border-radius: 5px;
-    text-align: center;  /* Ensure text inside the dropdown is centered */
-    width: 100%;  /* Make the select element full-width for better spacing */
-    max-width: 250px;  /* Limit the maximum width */
-}
-
-/* Centering the PayPal button */
-form input[type="image"] {
-    width: 250px;  /* Set a fixed width for the PayPal button */
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 0 15px var(--neon-glow);
-    display: block;  /* Makes the image block level, enabling centering */
-    margin: 20px auto;  /* Automatically centers the PayPal button */
-}
-
-    </style>
+    .modal-close:hover {
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Background Video -->
-    <div class="video-background">
-        <video autoplay muted loop id="background-video">
-            <source src="0329.mp4" type="video/mp4">
-            <source src="your-video.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
+  <!-- ✅ Background looping video -->
+  <video class="video-background" autoplay loop muted playsinline>
+    <source src="BACKGROUND VIDEO.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <header>WELCOME MY LEVELLERZ!</header>
+  <p><strong>THE LEVELLERZ PORTAL IS OPEN FOR 1 MONTH ONLY!</strong></p>
+  <p><strong>LIMITED PIECEZ, WONDERFUL RARENESS. SCROLL DOWN & CLAIM YOUR PEICE.</strong></p>
+
+  <section class="products">
+
+    <!-- Product 1 -->
+    <div class="product">
+      <p><strong>'A CHOICE IN THE CROSSHAIRZ.'</strong></p>
+      <p><strong>'£75 + £10 SHIPPING.'</strong></p>
+      <img src="all-over-print-mens-windbreaker-black-front-688a5d73431e3.png" alt="A CHOICE IN THE CROSSHAIRZ Front">
+      <img src="all-over-print-mens-windbreaker-black-back-688a5d73432df.png" alt="A CHOICE IN THE CROSSHAIRZ Back">
+      <p class="description">WINDBREAKER JACKET WITH A TARGETED ALIEN FOR YOU TO CHOOSE ITZ FATE.</p>
+
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="8S83E9T6CG4D2" />
+        <label for="os0-2" class="size-label">CHOOSE YOUR SIZE</label>
+        <select name="os0" id="os0-2" class="size-select" required>
+          <option value="SMALL">SMALL</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LARGE">LARGE</option>
+          <option value="X LARGE">X LARGE</option>
+          <option value="XX LARGE">XX LARGE</option>
+        </select>
+        <input type="hidden" name="currency_code" value="GBP" />
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="Buy Now" />
+      </form>
     </div>
 
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <h1>WELCOME MY FELLOW EARTHLINGZ!</h1>
-            <h2>1/1 STOiZY EXCLUSIVE MERCH,
-            ONCE ITZ GONE, ITZ GONE ETERNALLY..</h2>
-        </div>
-    </header>
+    <!-- Product 2 -->
+    <div class="product">
+      <p><strong>'KISS THA GLOBE.'</strong></p>
+      <p><strong>'£41 + £4 SHIPPING.'</strong></p>
+      <img src="mens-fitted-t-shirt-black-front-688aa8997dc15.png" alt="KISS THA GLOBE Front">
+      <img src="mens-fitted-t-shirt-black-back-688aa8997e4d5.png" alt="KISS THA GLOBE Back">
+      <p class="description">COTTON T-SHIRT FEATURING A MORE THAN HUMAN GLAMOUR OF A KISSED PLANET.</p>
 
-    <!-- Products Section -->
-    <section class="products">
-        <div class="container">
-
-            <!-- Product 1: CRAFTING REALMZ -->
-            <div class="product" id="product1">
-                <h3>CRAFTING REALMZ FOR BEINGZ LIKE YOU & I</h3>
-                <p class="price">£35.00 + £4 SHIPPING</p>
-                <div class="tshirt-images">
-                    <!-- Replace this with the Lightbox HTML structure -->
-                    <div class="image">
-                        <a href="unisex-classic-tee-black-front-67e9733bf21ab.png" data-lightbox="product1" data-title="Front View">
-                            <img src="unisex-classic-tee-black-front-67e9733bf21ab.png" alt="T-shirt Front">
-                        </a>
-                        <p>Front View</p>
-                    </div>
-                    <div class="image">
-                        <a href="CRAFTING REALMZ FOR BEINGZ LIKE YOU & I BACK.png data-lightbox="product1" data-title="Back View">
-                            <img src="unisex-classic-tee-black-back-67e9733bf3521.png" alt="T-shirt Back">
-                        </a>
-                        <p>Back View</p>
-                    </div>
-                </div>
-                <!-- PayPal Form -->
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                  <input type="hidden" name="cmd" value="_s-xclick" />
-                  <input type="hidden" name="hosted_button_id" value="3DMZ2W2GYVZMA" />
-                  <table>
-                    <tr>
-                      <td>
-                        <input type="hidden" name="on0" value="CHOOSE YOUR SIZE"/>
-                        CHOOSE YOUR SIZE
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <select name="os0">
-                          <option value="SMALL">
-                            SMALL
-                          </option>
-                          <option value="MEDIUM ">
-                            MEDIUM 
-                          </option>
-                          <option value="LARGE">
-                            LARGE
-                          </option>
-                          <option value="X LARGE">
-                            X LARGE
-                          </option>
-                          <option value="XX LARGE">
-                            XX LARGE
-                          </option>
-                        </select>
-                      </td>
-                    </tr>
-                  </table>
-                  <input type="hidden" name="currency_code" value="GBP" />
-                  <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-                </form>
-            </div>
-            
-
-            <!-- Product 2: RADIATE ARDENCY -->
-            <div class="product" id="product2">
-                <h3>RADIATE ARDENCY SO ITZ ALL WE CAN SEE.</h3>
-                <p class="price">£35.00 + £4 SHIPPING</p>
-                <div class="tshirt-images">
-                    <div class="image">
-                        <a href="unisex-classic-tee-black-front-67e967fb5c32a.png" data-lightbox="product2" data-title="Front View"><img src="unisex-classic-tee-black-front-67e967fb5c32a.png" alt="T-shirt Front"></a>
-                        <p>Front View</p>
-                    </div>
-                    <div class="image">
-                        <a href="unisex-classic-tee-black-back-67e967fb5d29c.png" data-lightbox="product2" data-title="Back View"><img src="unisex-classic-tee-black-back-67e967fb5d29c.png" alt="T-shirt Back"></a>
-                        <p>Back View</p>
-                    </div>
-                </div>
-
-                <!-- PayPal Form -->
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                  <input type="hidden" name="cmd" value="_s-xclick" />
-                  <input type="hidden" name="hosted_button_id" value="XEDKUUDAGMSXC" />
-                  <table>
-                    <tr>
-                      <td>
-                        <input type="hidden" name="on0" value="CHOOSE YOUR SIZE"/>
-                        CHOOSE YOUR SIZE
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <select name="os0">
-                          <option value="SMALL">
-                            SMALL
-                          </option>
-                          <option value="MEDIUM ">
-                            MEDIUM 
-                          </option>
-                          <option value="LARGE">
-                            LARGE
-                          </option>
-                          <option value="X LARGE">
-                            X LARGE
-                          </option>
-                          <option value="XX LARGE">
-                            XX LARGE
-                          </option>
-                        </select>
-                      </td>
-                    </tr>
-                  </table>
-                  <input type="hidden" name="currency_code" value="GBP" />
-                  <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-                </form>
-            </div>
-
-            <!-- Product 3: RETROFIED EVOLUTION -->
-            <div class="product" id="product3">
-                <h3>RETROFIED EVOLUTION</h3>
-                <p class="price">£30 + £4 SHIPPING</p>
-                <div class="tshirt-images">
-                    <div class="image">
-                        <a href="unisex-classic-tee-black-front-67e97018ce947.png" data-lightbox="product3" data-title="Front View"><img src="unisex-classic-tee-black-front-67e97018ce947.png" alt="T-shirt Front"></a>
-                        <p>Front View</p>
-                    </div>
-                    <div class="image">
-                        <a href="unisex-classic-tee-black-back-67e97018cfea6.png" data-lightbox="product3" data-title="Back View"><img src="unisex-classic-tee-black-back-67e97018cfea6.png" alt="T-shirt Back"></a>
-                        <p>Back View</p>
-                    </div>
-                </div>
-
-                <!-- PayPal Form -->
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                  <input type="hidden" name="cmd" value="_s-xclick" />
-                  <input type="hidden" name="hosted_button_id" value="9RVFD3ZVAXCXL" />
-                  <table>
-                    <tr>
-                      <td>
-                        <input type="hidden" name="on0" value="CHOOSE YOUR SIZE"/>
-                        CHOOSE YOUR SIZE
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <select name="os0">
-                          <option value="SMALL">
-                            SMALL
-                          </option>
-                          <option value="MEDIUM ">
-                            MEDIUM 
-                          </option>
-                          <option value="LARGE">
-                            LARGE
-                          </option>
-                          <option value="X LARGE">
-                            X LARGE
-                          </option>
-                          <option value="XX LARGE">
-                            XX LARGE
-                          </option>
-                        </select>
-                      </td>
-                    </tr>
-                  </table>
-                  <input type="hidden" name="currency_code" value="GBP" />
-                  <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-                </form>
-            </div>
-
-            <!-- Product 4: SERIOUS THEURGY -->
-            <div class="product" id="product4">
-                <h3>SERIOUS THEURGY</h3>
-                <p class="price">£26.00 + £4 SHIPPING</p>
-                <div class="tshirt-images">
-                    <div class="image">
-                        <a href="unisex-classic-tee-black-front-67e976dab6589.png" data-lightbox="product4" data-title="Front View"><img src="unisex-classic-tee-black-front-67e976dab6589.png" alt="T-shirt Front"></a>
-                        <p>Front View</p>
-                    </div>
-            
-                </div>
-                
-                <!-- PayPal Form -->
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-  <input type="hidden" name="cmd" value="_s-xclick" />
-  <input type="hidden" name="hosted_button_id" value="8S83E9T6CG4D2" />
-  <table>
-    <tr>
-      <td>
-        <input type="hidden" name="on0" value="CHOOSE YOUR SIZE"/>
-        CHOOSE YOUR SIZE
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <select name="os0">
-          <option value="SMALL">
-            SMALL
-          </option>
-          <option value="MEDIUM">
-            MEDIUM 
-          </option>
-          <option value="LARGE">
-            LARGE
-          </option>
-          <option value="X LARGE">
-            X LARGE
-          </option>
-          <option value="XX LARGE">
-            XX LARGE
-          </option>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="9RVFD3ZVAXCXL" />
+        <label for="os0-3" class="size-label">CHOOSE YOUR SIZE</label>
+        <select name="os0" id="os0-3" class="size-select" required>
+          <option value="SMALL">SMALL</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LARGE">LARGE</option>
+          <option value="X LARGE">X LARGE</option>
+          <option value="XX LARGE">XX LARGE</option>
         </select>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="currency_code" value="GBP" />
-  <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-</form>
-            </div>
-        </div>
-    </section>
+        <input type="hidden" name="currency_code" value="GBP" />
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="Buy Now" />
+      </form>
+    </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>THANK YOU FOR BEING A LEVELLER,
-            YOU ARE NEEDED.
-        </p>
-    </footer>
+    <!-- Product 3 -->
+    <div class="product">
+      <p><strong>'REALM OF MINE BROADCAST.'</strong></p>
+      <p><strong>'£46 + £4 SHIPPING.'</strong></p>
+      <img src="FRONT REALM OF MINE.png" alt="REALM OF MINE Front">
+      <img src="BACK REALM OF MINE.png" alt="REALM OF MINE Back">
+      <p class="description">SPORT JERSEY PRESENTING ONLY 1 BROARDCAST TO BE CHANNELED, A PLACE FOR THE LEVELLERZ.</p>
 
-    <!-- Lightbox JS -->
-    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="XEDKUUDAGMSXC" />
+        <label for="os0-4" class="size-label">CHOOSE YOUR SIZE</label>
+        <select name="os0" id="os0-4" class="size-select" required>
+          <option value="SMALL">SMALL</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LARGE">LARGE</option>
+          <option value="X LARGE">X LARGE</option>
+          <option value="XX LARGE">XX LARGE</option>
+        </select>
+        <input type="hidden" name="currency_code" value="GBP" />
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="Buy Now" />
+      </form>
+    </div>
 
+    <!-- Product 4 -->
+    <div class="product">
+      <p><strong>'ECCENTRICALLY FLY.'</strong></p>
+      <p><strong>'£56 + £4 SHIPPING.'</strong></p>
+      <img src="all-over-print-unisex-button-shirt-white-front-688ac1be085c2.PNG" alt="ECCENTRICALLY FLY Front">
+      <img src="all-over-print-unisex-button-shirt-white-back-688ac1be0871b.PNG" alt="ECCENTRICALLY FLY Back">
+      <p class="description">OVERSIZED SHORT SLEEVED SHIRT OF A FUTURE 4K CATZ PARADE WITH COSMIC EYEZ THAT SHALL LEAD THE WAY.</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="T9MLT4YQ6VQRE" />
+        <label for="os0-5" class="size-label">CHOOSE YOUR SIZE</label>
+        <select name="os0" id="os0-5" class="size-select" required>
+          <option value="SMALL">SMALL</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LARGE">LARGE</option>
+          <option value="X LARGE">X LARGE</option>
+          <option value="XX LARGE">XX LARGE</option>
+        </select>
+        <input type="hidden" name="currency_code" value="GBP" />
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="Buy Now" />
+      </form>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product">
+      <p><strong>'BEEN GATHERING INFORMATION.'</strong></p>
+      <p><strong>£30 + £4 SHIPPING.</strong></p>
+      <img src="unisex-classic-tee-black-front-688aceec87289.png" alt="BLUE">
+      <img src="unisex-classic-tee-black-front-688acf864e0e1.png" alt="GREEN">
+      <img src="unisex-classic-tee-black-front-688ad06455746.png" alt="PINK">
+      <p class="description">A CLEAN BUT CLASSIC COTTON BOX TEE OF THE ICONIC VOCAL STIM FROM STOiZY.</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="3DMZ2W2GYVZMA" />
+        <label for="size-select"><strong>CHOOSE YOUR SIZE</strong></label><br />
+        <select name="os0" id="size-select" class="size-select" required>
+          <option value="SMALL">SMALL</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LARGE">LARGE</option>
+          <option value="X LARGE">X LARGE</option>
+          <option value="XX LARGE">XX LARGE</option>
+        </select>
+        <br><br>
+        <label for="color-select"><strong>CHOOSE YOUR COLOUR</strong></label><br />
+        <select name="os1" id="color-select" class="color-select" required>
+          <option value="BLUE">BLUE</option>
+          <option value="GREEN">GREEN</option>
+          <option value="PINK">PINK</option>
+        </select>
+        <br><br>
+        <input type="hidden" name="currency_code" value="GBP" />
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="Buy Now" />
+      </form>
+    </div>
+
+  </section>
+
+  <footer>
+    &copy; 2025 WE DA LEVELLERZ, THANK YOU FOR BEING ONE!.
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="imgModal" class="modal">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <!-- Modal Script -->
+  <script>
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+
+    document.querySelectorAll('.product img').forEach(img => {
+      img.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+  </script>
 </body>
 </html>
